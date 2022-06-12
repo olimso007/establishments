@@ -1,0 +1,59 @@
+
+<mat-card>
+    <h2>Filter establishments</h2>
+    <form [formGroup]="filterForm" class="filter-form">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input  formControlName="name" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Cities</mat-label>
+            <mat-select multiple formControlName="cities" >
+              <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>PostCode</mat-label>
+            <input formControlName="postcode" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Start Year</mat-label>
+            <input formControlName="startyear" matInput type="number">
+        </mat-form-field>
+        <div class="action-btn">
+            <button mat-raised-button color="primary" (click)="onFilter()">Submit</button>
+            <button mat-stroked-button color="primary" (click)="onReset()">Reset filters</button>
+        </div>
+    
+    </form>    
+</mat-card>
+
+<table mat-table [dataSource]="establishments">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let establishment">{{establishment.title}}</td>
+    </ng-container>
+    <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef>City</th>
+        <td mat-cell *matCellDef="let establishment">{{establishment.location.city}}</td>
+    </ng-container>
+    <ng-container matColumnDef="postcode">
+        <th mat-header-cell *matHeaderCellDef>Postcode</th>
+        <td mat-cell *matCellDef="let establishment">{{establishment.location.zipcode}}</td>
+    </ng-container>
+    <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Address</th>
+        <td mat-cell *matCellDef="let establishment">{{establishment.location.adress}}</td>
+    </ng-container>
+    <ng-container matColumnDef="startyear">
+        <th mat-header-cell *matHeaderCellDef>Start year</th>
+        <td mat-cell *matCellDef="let establishment"> 
+            {{establishment.dates?.startdate ? establishment.dates.startdate.split('-')[2] : ''}} 
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="onOpen(myRowData.title)"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons>
+</mat-paginator>

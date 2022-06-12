@@ -1,0 +1,36 @@
+mat-card {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}   
+
+button {
+    width: fit-content;
+    margin: 0 5px;
+}
+
+.action-btn {
+    display: flex;
+    place-content: center;
+}
+
+table {
+    width: 90%;
+    margin: 5%;
+}
+
+tr.mat-row:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,.04);
+}
+
+th, td {
+    width: 20%;
+}
