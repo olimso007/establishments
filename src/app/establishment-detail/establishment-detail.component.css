@@ -1,0 +1,40 @@
+label {
+    font-size: large;
+}
+
+.info {
+    direction: ltr;
+    width: 45%;
+}
+
+span {
+    font-size: large;
+    font-style: italic;
+}
+
+.material-icons {
+    margin-bottom: -5px;
+    color: #3f51b5;
+}
+
+mat-card-content {
+    display: flex;
+    flex-flow: row wrap;
+    direction: rtl;
+    place-content: center space-between;
+}
+
+.image {
+    width: 50%;
+}
+
+img {
+    width: 100%;
+}
+
+.image:last-child:nth-child(odd) {
+    width: 100%;
+}
+
+
+

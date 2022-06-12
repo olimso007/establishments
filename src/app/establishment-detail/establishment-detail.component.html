@@ -1,0 +1,40 @@
+<mat-card>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="back()">Back</button>
+    </mat-card-actions>
+    <mat-card-content>
+        <div class="info">
+            <mat-card-title>{{establishment.title}}</mat-card-title>
+            <ng-container class="location" *ngIf="establishment.location; let location">
+                <div *ngIf="location.city; let city">
+                    <mat-icon class="material-icons-outlined">location_city</mat-icon>
+                    <label>City: </label>
+                    <span>{{city}}</span>
+                </div>
+                <div *ngIf="location.adress; let address">
+                    <mat-icon class="material-icons-outlined">home</mat-icon>
+                    <label>Address: </label>
+                    <span>{{address}}</span>
+                </div>
+                <div *ngIf="location.zipcode; let zipcode">
+                    <mat-icon class="material-icons-outlined">mail</mat-icon>
+                    <label>Postcode: </label>
+                    <span>{{zipcode}}</span>
+                </div>
+            </ng-container>
+            <ng-container  class="urls" *ngIf="establishment.urls.length">
+                <mat-icon class="material-icons-outlined">language</mat-icon>
+                <label>Website: </label><br>
+                <div class="url" *ngFor="let url of establishment.urls">
+                    <a [href]="url">{{url}}</a>
+                </div>
+            </ng-container>
+        </div>
+        
+        <ng-container  class="images" *ngIf="establishment.media">
+            <div class="image" *ngFor="let img of establishment.media">
+                <img [src]="img?.url || img">
+            </div>
+        </ng-container>
+    </mat-card-content>
+</mat-card>
